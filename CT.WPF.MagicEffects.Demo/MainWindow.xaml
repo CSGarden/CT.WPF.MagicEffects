@@ -1,0 +1,24 @@
+﻿<AduSkin:MetroWindow
+    x:Class="CT.WPF.MagicEffects.Demo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:AduSkin="clr-namespace:AduSkin.Controls.Metro;assembly=AduSkin"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    MinWidth="1440"
+    MinHeight="900"
+    d:DesignHeight="1200"
+    d:DesignWidth="1600"
+    BorderBrush="SeaGreen"
+    FontSize="16"
+    IsSubWindowShow="False"
+    SysButtonColor="White"
+    TitleForeground="LightYellow"
+    mc:Ignorable="d">
+    <Grid>
+        <AduSkin:AduFlatButton Content="按钮" />
+
+    </Grid>
+</AduSkin:MetroWindow>
