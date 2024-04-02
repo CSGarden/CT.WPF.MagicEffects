@@ -17,7 +17,8 @@
     SysButtonColor="White"
     TitleForeground="LightYellow"
     mc:Ignorable="d">
-    <Grid>
+    <Grid> 
+        
         <AduSkin:AduFlatButton Content="按钮" />
 
     </Grid>
