@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Resources\Start.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AduSkin" Version="1.1.1.9" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
@@ -17,6 +21,10 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Resources\Start.png" />
   </ItemGroup>
 
 </Project>
