@@ -24,7 +24,7 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels {
 
         public MainViewModel Main {
             get {
-                return serviceProvider.GetService<MainViewModel>();
+                return serviceProvider?.GetService<MainViewModel>();
             }
         }
     }

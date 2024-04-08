@@ -8,8 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator" />
-
-            <ResourceDictionary.MergedDictionaries />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CT.WPF.MagicEffects.Demo;component/Converters/Converters.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/CT.WPF.MagicEffects.Demo;component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

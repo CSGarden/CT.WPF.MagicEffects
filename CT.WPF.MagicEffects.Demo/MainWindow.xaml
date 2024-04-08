@@ -1,26 +1,66 @@
-﻿<AduSkin:MetroWindow
+﻿<Skin:MetroWindow
     x:Class="CT.WPF.MagicEffects.Demo.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:AduSkin="clr-namespace:AduSkin.Controls.Metro;assembly=AduSkin"
+    xmlns:Skin="https://github.com/aduskin"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Title}"
     MinWidth="1440"
     MinHeight="900"
     d:DesignHeight="1200"
     d:DesignWidth="1600"
-    BorderBrush="SeaGreen"
+    BorderBrush="{DynamicResource DefaultThemeColor}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     FontSize="16"
     IsSubWindowShow="False"
     SysButtonColor="White"
-    Title="{Binding Title}"
     TitleForeground="LightYellow"
     mc:Ignorable="d">
-    <Grid>
-
-        <AduSkin:AduFlatButton Content="按钮" />
+    <Skin:MetroWindow.Menu>
+        <Skin:MetroTitleMenu
+            HorizontalAlignment="Right"
+            Skin:BorderElement.CornerRadius="10"
+            Background="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+            Cursor="Hand">
+            <Skin:MetroTitleMenuItem
+                Padding="-20"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Skin:BorderElement.CornerRadius="5"
+                Cursor="ArrowCD"
+                Header="关于">
+                <Skin:MetroColorPicker
+                    x:Name="ColorPicker"
+                    MinWidth="25"
+                    MinHeight="25"
+                    Background="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    DefaultColor="{StaticResource DefaultThemeColor}" />
+            </Skin:MetroTitleMenuItem>
+        </Skin:MetroTitleMenu>
+    </Skin:MetroWindow.Menu>
+    <Grid Background="{Binding MainBackground}">
+        <Skin:AduTabControl SelectedIndex="{Binding SelectedModularIndex}">
+            <Skin:AduTabControl.Resources>
+                <Style TargetType="TabPanel">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+                <Style TargetType="{x:Type Skin:AduTabItem}">
+                    <Setter Property="Width" Value="120" />
+                    <Setter Property="Height" Value="45" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="FontWeight" Value="ExtraBlack" />
+                    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}" />
+                </Style>
+            </Skin:AduTabControl.Resources>
+            <Skin:AduTabItem
+                BorderBrush="{DynamicResource DefaultBorderBrush}"
+                BorderThickness="1,1,1,1"
+                Header="效果">
+                <ContentControl Content="{Binding TopOnePage}" />
+            </Skin:AduTabItem>
+        </Skin:AduTabControl>
 
     </Grid>
-</AduSkin:MetroWindow>
+</Skin:MetroWindow>
