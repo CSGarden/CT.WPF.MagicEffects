@@ -7,7 +7,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
     partial class MonochromeEffectViewModel : ObservableObject {
@@ -20,14 +22,15 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
         [ObservableProperty]
         private ObservableCollection<string> imagePaths = new();
         [RelayCommand]
-        public void SelectImage() {
-            var dialog = new Microsoft.Win32.OpenFileDialog {
-                Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
-                Multiselect = false
-            };
-            if (dialog.ShowDialog() == true) {
-                SelectedImagePath = dialog.FileName; 
-            }
+        public void SelectImage(RoutedPropertyChangedEventArgs<object> e) {
+            //var dialog = new Microsoft.Win32.OpenFileDialog {
+            //    Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
+            //    Multiselect = false
+            //};
+            //if (dialog.ShowDialog() == true) {
+            //    SelectedImagePath = dialog.FileName; 
+            //}
+            SelectedImagePath = (e.NewValue as string[])[0];
         }
         public MonochromeEffectViewModel() {
             EffectOptions = new ObservableCollection<EffectOption>
