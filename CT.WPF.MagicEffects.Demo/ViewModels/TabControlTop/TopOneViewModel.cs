@@ -63,10 +63,11 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.TabControlTop {
 
         [ObservableProperty]
         private ControlModel? currentShowControl;
-        public void OnCurrentShowControlChanged() {
+        partial void OnCurrentShowControlChanged(ControlModel? value) {
             UpdateContentBasedOnCurrentShowControl();
             Title = CurrentShowControl?.Title;
         }
+        
 
         private void UpdateContentBasedOnCurrentShowControl() {
             if (CurrentShowControl == null) {
