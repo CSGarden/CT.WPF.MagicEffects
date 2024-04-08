@@ -7,4 +7,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Shaders\MonochromeEffect.ps" />
+    <None Remove="Shaders\TexturedColorReplaceEffect.ps" />
+    <None Remove="Shaders\ToneMappingEffect.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Shaders\MonochromeEffect.ps">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Shaders\TexturedColorReplaceEffect.ps" />
+    <Resource Include="Shaders\ToneMappingEffect.ps" />
+  </ItemGroup>
+
 </Project>

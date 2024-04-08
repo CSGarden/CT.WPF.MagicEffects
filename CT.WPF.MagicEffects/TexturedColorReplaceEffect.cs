@@ -18,7 +18,7 @@ namespace CT.WPF.MagicEffects {
 
         public TexturedColorReplaceEffect() {
             PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("/Shaders/TexturedColorReplaceEffect.ps",UriKind.Relative);
+            pixelShader.UriSource = new Uri("pack://application:,,,/CT.WPF.MagicEffects;component/Shaders/TexturedColorReplaceEffect.ps",UriKind.Absolute);
             this.PixelShader = pixelShader;
 
             this.UpdateShaderValue(InputProperty);

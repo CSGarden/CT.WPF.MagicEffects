@@ -15,10 +15,8 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.TabControlTop {
     public partial class TopOneViewModel : ObservableObject {
 
         public TopOneViewModel() {
-            // 假设我们这里初始化一个控件示例，在实际应用中你需要根据实际情况填充这个列表。
             AllControl = new List<ControlModel> {
-                new ControlModel("人像颜色替换", typeof(UserControl))
-                // 注意: 这里假设UserControl替换为你实际使用的控件类。
+                new ControlModel("人像颜色替换", typeof(MonochromeEffectControl))
             };
             SearchControl = new CollectionViewSource {
                 Source = AllControl
@@ -29,8 +27,6 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.TabControlTop {
             SearchControl.View.Filter = obj => (((obj as ControlModel)?.Title ?? string.Empty) + ((obj as ControlModel)?.TitlePinyin ?? string.Empty)).ToLower().Contains(SearchKey?.ToLower() ?? string.Empty);
 
             SearchControl.View.SortDescriptions.Add(new SortDescription(nameof(ControlModel.Title),ListSortDirection.Ascending));
-
-            // 初始设置CurrentShowControl
             CurrentShowControl = AllControl.FirstOrDefault();
         }
 
@@ -43,10 +39,6 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.TabControlTop {
 
         [ObservableProperty]
         private UserControl? content;
-
-        partial void OnContentChanged(UserControl? value) {
-            // 这个方法只是作为一个展示使用，实际上内容更新是在OnCurrentShowControlChanged中处理
-        }
 
         [ObservableProperty]
         private string? title;
@@ -73,7 +65,6 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.TabControlTop {
             if (CurrentShowControl == null) {
                 Content = null;
             } else {
-                // 确保类型有无参构造函数
                 Content = (UserControl?)Activator.CreateInstance(CurrentShowControl.Content);
             }
         }

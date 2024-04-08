@@ -20,7 +20,7 @@ namespace CT.WPF.MagicEffects {
         public static readonly DependencyProperty BlueShiftProperty = DependencyProperty.Register("BlueShift",typeof(double),typeof(ToneMappingEffect),new UIPropertyMetadata(((double)(0.25D)),PixelShaderConstantCallback(7)));
         public ToneMappingEffect() {
             PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("/Shaders/ToneMappingEffect.ps",UriKind.Relative);
+            pixelShader.UriSource = new Uri("pack://application:,,,/CT.WPF.MagicEffects;component/Shaders/ToneMappingEffect.ps",UriKind.Absolute);
             this.PixelShader = pixelShader;
 
             this.UpdateShaderValue(InputProperty);

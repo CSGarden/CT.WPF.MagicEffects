@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Resources\demo.png" />
     <None Remove="Images\Resources\Start.png" />
   </ItemGroup>
 
@@ -20,6 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CT.WPF.MagicEffects\CT.WPF.MagicEffects.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Resources\demo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Resources\Start.png" />
   </ItemGroup>
 

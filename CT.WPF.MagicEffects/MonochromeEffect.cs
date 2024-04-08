@@ -13,7 +13,7 @@ namespace CT.WPF.MagicEffects {
         public static readonly DependencyProperty FilterColorProperty = DependencyProperty.Register("FilterColor",typeof(Color),typeof(MonochromeEffect),new UIPropertyMetadata(Color.FromArgb(255,255,255,0),PixelShaderConstantCallback(0)));
         public MonochromeEffect() {
             PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("/Shaders/MonochromeEffect.ps",UriKind.Relative);
+            pixelShader.UriSource = new Uri("pack://application:,,,/CT.WPF.MagicEffects;component/Shaders/MonochromeEffect.ps",UriKind.Absolute);
             this.PixelShader = pixelShader;
 
             this.UpdateShaderValue(InputProperty);

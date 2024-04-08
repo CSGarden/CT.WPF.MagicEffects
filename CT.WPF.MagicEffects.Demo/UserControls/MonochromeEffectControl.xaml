@@ -2,11 +2,95 @@
     x:Class="CT.WPF.MagicEffects.Demo.UserControls.MonochromeEffectControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Skin="https://github.com/aduskin"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:effects="clr-namespace:CT.WPF.MagicEffects;assembly=CT.WPF.MagicEffects"
     xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:CT.WPF.MagicEffects.Demo.ViewModels.Monochrome"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid Background="Yellow" />
+    <UserControl.DataContext>
+        <vm:MonochromeEffectViewModel />
+    </UserControl.DataContext>
+    <Grid Background="{DynamicResource DefaultBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--  展示列表展示多个路径效果xmal  -->
+        <Border BorderBrush="Linen" BorderThickness="0,0,1,0">
+            <StackPanel Orientation="Vertical">
+                <Border
+                    Height="100"
+                    MinWidth="100"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource ShowControlBorder}">
+                    <Skin:AduUpload
+                        BorderBrush="{DynamicResource DefaultListBrush1}"
+                        Command="{Binding SelectImageCommand}"
+                        Cursor="Hand"
+                        Foreground="{DynamicResource DefaultListBrush1}"
+                        MultiSelect="False" />
+                </Border>
+                <Skin:MetroScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListView
+                        Width="240"
+                        Height="600"
+                        BorderThickness="0"
+                        ItemsSource="{Binding EffectOptions}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        SelectedItem="{Binding SelectedEffectOption, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <Viewbox
+                                        Width="99"
+                                        Height="88"
+                                        Margin="2">
+                                        <Image Source="/Images/Resources/demo.png">
+                                            <Image.Effect>
+                                                <effects:MonochromeEffect FilterColor="{Binding FilterColor}" />
+                                            </Image.Effect>
+                                        </Image>
+                                    </Viewbox>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource DefaultListBrush1}"
+                                        Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </Skin:MetroScrollViewer>
+            </StackPanel>
+        </Border>
+        <Skin:MetroScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
+            <Grid>
+                <ScrollViewer
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+                    <Viewbox Height="900" Stretch="Uniform">
+                        <Image Source="{Binding SelectedImagePath}">
+                            <Image.Effect>
+                                <effects:MonochromeEffect FilterColor="{Binding SelectedEffectOption.FilterColor}" />
+                            </Image.Effect>
+                        </Image>
+                    </Viewbox>
+                </ScrollViewer>
+            </Grid>
+        </Skin:MetroScrollViewer>
+    </Grid>
 </UserControl>

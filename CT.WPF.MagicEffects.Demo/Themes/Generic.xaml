@@ -1,7 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="DefaultThemeColor" Color="#5555FF" />
-    <SolidColorBrush x:Key="DefaultBorderBrush" Color="GreenYellow" />
+    <SolidColorBrush x:Key="DefaultThemeColor" Color="#FF2D9F87" />
+    <SolidColorBrush x:Key="DefaultBorderBrush" Color="Beige" />
     <SolidColorBrush x:Key="DefaultBrush" Color="BlueViolet" />
+    <SolidColorBrush x:Key="DefaultListBrush1" Color="#009999" />
+    <SolidColorBrush x:Key="DefaultListBrush2" Color="#9066CCCC" />
+    <SolidColorBrush x:Key="DefaultListBrush3" Color="#CCFFFF" />
+    <SolidColorBrush x:Key="DefaultBackground" Color="White" />
+    <!--  ShadowColor  -->
     <DropShadowEffect
         x:Key="CardShadow"
         BlurRadius="20"
@@ -19,7 +24,7 @@
     </Style>
     <Style x:Key="Title" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="#cc303030" />
+        <Setter Property="Foreground" Value="{DynamicResource DefaultListBrush1}" />
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
@@ -27,7 +32,7 @@
         x:Key="H5"
         BasedOn="{StaticResource Title}"
         TargetType="TextBlock">
-        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontSize" Value="14" />
     </Style>
 
     <!--  马赛克背景  -->
