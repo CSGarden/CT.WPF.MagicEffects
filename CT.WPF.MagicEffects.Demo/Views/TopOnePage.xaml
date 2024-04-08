@@ -29,7 +29,7 @@
                     Content="各 种 效 果 应 有 尽 有"
                     FontSize="16"
                     FontWeight="Medium"
-                    Foreground="#009999"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
                     Duration="0:0:8" />
                 <ListBox
                     BorderThickness="0"
@@ -65,7 +65,7 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Skin:TextBlockService.HighlightText="{Binding ElementName=SearchKey, Path=Text}"
-                                        Foreground="{StaticResource DefaultListBrush1}"
+                                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
                                         Style="{StaticResource H5}"
                                         Text="{Binding Title}" />
                                     <Border
@@ -75,7 +75,7 @@
                                         MinWidth="30"
                                         Padding="4,0"
                                         HorizontalAlignment="Center"
-                                        Background="{StaticResource DefaultListBrush2}"
+                                        Background="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
                                         CornerRadius="8">
                                         <TextBlock
                                             x:Name="stateName"
@@ -128,7 +128,7 @@
                 VerticalAlignment="Center"
                 Background="#FFF"
                 CornerRadius="10"
-                Effect="{StaticResource CardShadow}">
+                Effect="{StaticResource CardShadow}" Cursor="">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />
