@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Skin="https://github.com/aduskin"
+    xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:effects="clr-namespace:CT.WPF.MagicEffects;assembly=CT.WPF.MagicEffects"
     xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls"
@@ -29,10 +30,16 @@
                     Style="{StaticResource ShowControlBorder}">
                     <Skin:AduUpload
                         BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                        Command="{Binding SelectImageCommand}"
                         Cursor="Hand"
+                        Filter="图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
                         Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                        MultiSelect="False" />
+                        MultiSelect="False">
+                        <behavior:Interaction.Triggers>
+                            <behavior:EventTrigger EventName="FileAduUpload">
+                                <behavior:InvokeCommandAction Command="{Binding SelectImageCommand}" PassEventArgsToCommand="True" />
+                            </behavior:EventTrigger>
+                        </behavior:Interaction.Triggers>
+                    </Skin:AduUpload>
                 </Border>
                 <Skin:MetroScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListView
@@ -50,7 +57,7 @@
                                         Width="99"
                                         Height="88"
                                         Margin="2">
-                                        <Image Source="/Images/Resources/demo.png">
+                                        <Image Source="{Binding DataContext.SelectedImagePath, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
                                             <Image.Effect>
                                                 <effects:MonochromeEffect FilterColor="{Binding FilterColor}" />
                                             </Image.Effect>
@@ -83,7 +90,7 @@
                     VerticalAlignment="Bottom"
                     HorizontalScrollBarVisibility="Auto"
                     VerticalScrollBarVisibility="Auto">
-                    <Viewbox Height="900" Stretch="Uniform">
+                    <Viewbox Height="700" Stretch="Uniform">
                         <Image Source="{Binding SelectedImagePath}">
                             <Image.Effect>
                                 <effects:MonochromeEffect FilterColor="{Binding SelectedEffectOption.FilterColor}" />

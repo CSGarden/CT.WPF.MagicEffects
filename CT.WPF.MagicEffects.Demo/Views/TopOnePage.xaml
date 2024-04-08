@@ -128,7 +128,8 @@
                 VerticalAlignment="Center"
                 Background="#FFF"
                 CornerRadius="10"
-                Effect="{StaticResource CardShadow}" Cursor="">
+                Cursor=""
+                Effect="{StaticResource CardShadow}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" />
