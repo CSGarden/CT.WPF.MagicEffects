@@ -20,6 +20,5 @@ namespace CT.WPF.MagicEffects.Demo {
             InitializeComponent();
             this.Closed += delegate { Application.Current.Shutdown(); };
         }
-
     }
 }
