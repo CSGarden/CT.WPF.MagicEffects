@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Input;
+using CT.WPF.MagicEffects.Demo.ViewModels.Monochrome;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +15,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CT.WPF.MagicEffects.Demo.UserControls
-{
+namespace CT.WPF.MagicEffects.Demo.UserControls {
     /// <summary>
     /// MonochromeEffectControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MonochromeEffectControl : UserControl
-    {
-        public MonochromeEffectControl()
-        {
+    public partial class MonochromeEffectControl : UserControl {
+        public MonochromeEffectControl() {
             InitializeComponent();
+            monochromeViewModel = new MonochromeEffectViewModel();
+
+        }
+        private MonochromeEffectViewModel monochromeViewModel;
+        private void ColorPicker_ColorChange(object sender,EventArgs e) {
+            if (ColorPicker.Background is SolidColorBrush solid) {
+                monochromeViewModel.ChangeFilterColorCommand.Execute(solid.Color);
+            }
         }
     }
 }

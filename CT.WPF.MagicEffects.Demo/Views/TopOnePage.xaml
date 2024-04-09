@@ -128,19 +128,20 @@
                 VerticalAlignment="Center"
                 Background="#FFF"
                 CornerRadius="10"
+                Cursor=""
                 Effect="{StaticResource CardShadow}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60" />
+                        <RowDefinition Height="auto" />
                         <RowDefinition Height="Auto" MinHeight="680" />
                     </Grid.RowDefinitions>
-                    <TextBlock
+                    <!--<TextBlock
                         Grid.Row="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
                         Style="{StaticResource H5}"
-                        Text="{Binding Title}" />
+                        Text="{Binding Title}" />-->
                     <ContentPresenter Grid.Row="1" Content="{Binding Content}" />
                 </Grid>
             </Border>

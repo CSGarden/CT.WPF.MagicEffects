@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
     partial class MonochromeEffectViewModel : ObservableObject {
@@ -20,16 +19,9 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
         [ObservableProperty]
         private ObservableCollection<EffectOption> effectOptions;
         [ObservableProperty]
-        private ObservableCollection<string> imagePaths = new();
+        private ObservableCollection<string> imagePaths = new   ObservableCollection<string>();    
         [RelayCommand]
         public void SelectImage(RoutedPropertyChangedEventArgs<object> e) {
-            //var dialog = new Microsoft.Win32.OpenFileDialog {
-            //    Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
-            //    Multiselect = false
-            //};
-            //if (dialog.ShowDialog() == true) {
-            //    SelectedImagePath = dialog.FileName; 
-            //}
             SelectedImagePath = (e.NewValue as string[])[0];
         }
         public MonochromeEffectViewModel() {
@@ -47,11 +39,17 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
             new EffectOption() { Name = "OldLace", FilterColor = Color.FromRgb(253 ,245 ,230)},
             new EffectOption() { Name = "DarkSeaGreen1", FilterColor = Color.FromRgb(193 ,255 ,193)},
             new EffectOption() { Name = "LightSlateBlue", FilterColor = Color.FromRgb(132 ,112 ,255)},
+            new EffectOption() { Name = "HotPink", FilterColor = Color.FromRgb(255 ,105 ,180)},
 
             };
             if (EffectOptions.Any()) {
                 SelectedEffectOption = EffectOptions[0];
             }
+        }
+
+        [RelayCommand]
+        public void ChangeFilterColor(Color color) {
+            SelectedEffectOption.FilterColor = color;
         }
     }
 }
