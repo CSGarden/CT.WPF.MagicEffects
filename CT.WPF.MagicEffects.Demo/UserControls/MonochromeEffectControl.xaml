@@ -11,6 +11,7 @@
     xmlns:vm="clr-namespace:CT.WPF.MagicEffects.Demo.ViewModels.Monochrome"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Background="#10777777"
     mc:Ignorable="d">
     <UserControl.DataContext>
         <vm:MonochromeEffectViewModel />

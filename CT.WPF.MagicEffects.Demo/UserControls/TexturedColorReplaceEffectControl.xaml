@@ -8,14 +8,112 @@
     xmlns:effects="clr-namespace:CT.WPF.MagicEffects;assembly=CT.WPF.MagicEffects"
     xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:CT.WPF.MagicEffects.Demo.ViewModels.TexturedColorReplace"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    Background="White"
+    Background="#10777777"
     mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:TexturedColorReplaceEffectViewModel />
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition  Width="240"/>
+            <ColumnDefinition Width="240" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid>
+            <StackPanel Cursor="" Orientation="Vertical">
+                <Border
+                    Height="100"
+                    MinWidth="100"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource ShowControlBorder}">
+                    <Skin:AduUpload
+                        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                        Cursor="Hand"
+                        Filter="图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                        MultiSelect="False">
+                        <behavior:Interaction.Triggers>
+                            <behavior:EventTrigger EventName="FileAduUpload">
+                                <behavior:InvokeCommandAction Command="{Binding SelectImageCommand}" PassEventArgsToCommand="True" />
+                            </behavior:EventTrigger>
+                        </behavior:Interaction.Triggers>
+                    </Skin:AduUpload>
+                </Border>
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="需要替换的颜色：" />
+                <Skin:MetroColorPicker
+                    x:Name="BeforeColor"
+                    MinWidth="50"
+                    MinHeight="50"
+                    Padding="5"
+                    ColorChange="BeforeColor_ColorChange"
+                    DefaultColor="Transparent" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="替换后的颜色：" />
+                <Skin:MetroColorPicker
+                    x:Name="AfterColor"
+                    MinWidth="50"
+                    MinHeight="50"
+                    Padding="5"
+                    ColorChange="AfterColor_ColorChange"
+                    DefaultColor="Transparent" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="调节纹理：" />
+                <Skin:AduFlatSilder
+                    Height="18"
+                    Margin="0,10"
+                    BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Cursor="Hand"
+                    Maximum="1.0"
+                    Minimum="0.0"
+                    Value="{Binding Threshold, Mode=TwoWay}" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="调节容差：" />
+                <Skin:AduFlatSilder
+                    Height="18"
+                    Margin="0,10"
+                    BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Cursor="Hand"
+                    Maximum="1.0"
+                    Minimum="0.0"
+                    Value="{Binding Tolerance, Mode=TwoWay}" />
+            </StackPanel>
+        </Grid>
+        <Skin:MetroScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
+            <Grid>
+                <ScrollViewer
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+                    <Viewbox Height="700" Stretch="Uniform">
+                        <Image Source="{Binding SelectedImagePath}">
+                            <Image.Effect>
+                                <effects:TexturedColorReplaceEffect
+                                    ReplacementColor="{Binding ReplacementColor}"
+                                    TargetColor="{Binding TargetColor}"
+                                    Threshold="{Binding Threshold}"
+                                    Tolerance="{Binding Tolerance}" />
+                            </Image.Effect>
+                        </Image>
+                    </Viewbox>
+                </ScrollViewer>
+            </Grid>
+        </Skin:MetroScrollViewer>
     </Grid>
 </UserControl>
