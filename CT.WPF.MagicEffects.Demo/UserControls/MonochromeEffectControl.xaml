@@ -120,7 +120,7 @@
                     <Viewbox Height="700" Stretch="Uniform">
                         <Image Source="{Binding SelectedImagePath}">
                             <Image.Effect>
-                                <effects:MonochromeEffect FilterColor="{Binding SelectedEffectOption.FilterColor, Mode=TwoWay}" />
+                                <effects:MonochromeEffect FilterColor="{Binding SelectedEffectOption.FilterColor}" />
                             </Image.Effect>
                         </Image>
                     </Viewbox>
