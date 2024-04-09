@@ -22,7 +22,7 @@ namespace CT.WPF.MagicEffects.Demo.UserControls {
     public partial class MonochromeEffectControl : UserControl {
         public MonochromeEffectControl() {
             InitializeComponent();
-            monochromeViewModel = new MonochromeEffectViewModel();
+            monochromeViewModel = this.DataContext as MonochromeEffectViewModel;
 
         }
         private MonochromeEffectViewModel monochromeViewModel;
