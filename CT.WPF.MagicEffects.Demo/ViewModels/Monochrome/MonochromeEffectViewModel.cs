@@ -19,7 +19,7 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
         [ObservableProperty]
         private ObservableCollection<EffectOption> effectOptions;
         [ObservableProperty]
-        private ObservableCollection<string> imagePaths = new ObservableCollection<string>();    
+        private ObservableCollection<string> imagePaths = new   ObservableCollection<string>();    
         [RelayCommand]
         public void SelectImage(RoutedPropertyChangedEventArgs<object> e) {
             SelectedImagePath = (e.NewValue as string[])[0];
@@ -45,6 +45,11 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
             if (EffectOptions.Any()) {
                 SelectedEffectOption = EffectOptions[0];
             }
+        }
+
+        [RelayCommand]
+        public void ChangeFilterColor(Color color) {
+            SelectedEffectOption.FilterColor = color;
         }
     }
 }
