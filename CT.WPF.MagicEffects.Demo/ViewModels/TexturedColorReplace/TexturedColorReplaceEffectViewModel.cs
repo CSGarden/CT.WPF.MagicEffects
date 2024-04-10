@@ -11,23 +11,19 @@ using System.Windows.Media;
 namespace CT.WPF.MagicEffects.Demo.ViewModels.TexturedColorReplace {
     partial class TexturedColorReplaceEffectViewModel : ObservableObject {
         [ObservableProperty]
-        private string selectedImagePath;
-        [RelayCommand]
-        public void SelectImage(RoutedPropertyChangedEventArgs<object> e) {
-            SelectedImagePath = (e.NewValue as string[])[0];
-        }
-        [ObservableProperty]
         private Color targetColor;
+
         [RelayCommand]
-        public void SetTargetColor(Color targetColor) {
-            TargetColor = targetColor;
+        public void SetTargetColor(SolidColorBrush targetColor) {
+            TargetColor = targetColor.Color;
         }
 
         [ObservableProperty]
         private Color replacementColor;
+
         [RelayCommand]
-        public void SetReplacementColor(Color replacementColor) {
-            ReplacementColor = replacementColor;
+        public void SetReplacementColor(SolidColorBrush replacementColor) {
+            ReplacementColor = replacementColor.Color;
         }
 
         [ObservableProperty]

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Skin="https://github.com/aduskin"
     xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:common="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:effects="clr-namespace:CT.WPF.MagicEffects;assembly=CT.WPF.MagicEffects"
     xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls"
@@ -16,7 +17,80 @@
     <UserControl.DataContext>
         <vm:TexturedColorReplaceEffectViewModel />
     </UserControl.DataContext>
-    <Grid>
+    <common:CommonEffectControl>
+        <common:CommonEffectControl.Option>
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="需要替换的颜色：" />
+                <Skin:MetroColorPicker
+                    x:Name="BeforeColor"
+                    MinWidth="50"
+                    MinHeight="50"
+                    Padding="5"
+                    DefaultColor="Transparent">
+                    <behavior:Interaction.Triggers>
+                        <behavior:EventTrigger EventName="ColorChange">
+                            <behavior:InvokeCommandAction Command="{Binding DataContext.SetTargetColorCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding ElementName=BeforeColor, Path=Background}" />
+                        </behavior:EventTrigger>
+                    </behavior:Interaction.Triggers>
+                </Skin:MetroColorPicker>
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="替换后的颜色：" />
+                <Skin:MetroColorPicker
+                    x:Name="AfterColor"
+                    MinWidth="50"
+                    MinHeight="50"
+                    Padding="5"
+                    DefaultColor="Transparent">
+                    <behavior:Interaction.Triggers>
+                        <behavior:EventTrigger EventName="ColorChange">
+                            <behavior:InvokeCommandAction Command="{Binding DataContext.SetReplacementColorCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding ElementName=AfterColor, Path=Background}" />
+                        </behavior:EventTrigger>
+                    </behavior:Interaction.Triggers>
+                </Skin:MetroColorPicker>
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="调节纹理：" />
+                <Skin:AduFlatSilder
+                    Height="18"
+                    Margin="0,10"
+                    BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Cursor="Hand"
+                    Maximum="1.0"
+                    Minimum="0.0"
+                    Value="{Binding Threshold, Mode=TwoWay}" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Text="调节容差：" />
+                <Skin:AduFlatSilder
+                    Height="18"
+                    Margin="0,10"
+                    BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                    Cursor="Hand"
+                    Maximum="1.0"
+                    Minimum="0.0"
+                    Value="{Binding Tolerance, Mode=TwoWay}" />
+            </StackPanel>
+        </common:CommonEffectControl.Option>
+        <common:CommonEffectControl.Effect>
+            <effects:TexturedColorReplaceEffect
+                ReplacementColor="{Binding ReplacementColor}"
+                TargetColor="{Binding TargetColor}"
+                Threshold="{Binding Threshold}"
+                Tolerance="{Binding Tolerance}" />
+        </common:CommonEffectControl.Effect>
+    </common:CommonEffectControl>
+    <!--<Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240" />
             <ColumnDefinition />
@@ -115,5 +189,5 @@
                 </ScrollViewer>
             </Grid>
         </Skin:MetroScrollViewer>
-    </Grid>
+    </Grid>-->
 </UserControl>
