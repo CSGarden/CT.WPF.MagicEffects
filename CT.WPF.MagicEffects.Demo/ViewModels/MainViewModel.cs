@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CT.WPF.MagicEffects.Demo.Views;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,6 +7,9 @@ using System.Windows.Media;
 
 namespace CT.WPF.MagicEffects.Demo.ViewModels {
     public partial class MainViewModel : ObservableObject {
+        [ObservableProperty]
+        private string selectedImagePath;
+
         [ObservableProperty]
         private string title = "效果demo";
 
@@ -23,6 +27,10 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels {
                 MainBackground = new SolidColorBrush(Color.FromRgb(255,255,255));
         }
 
+        [RelayCommand]
+        public void SelectImage(RoutedPropertyChangedEventArgs<object> e) {
+            SelectedImagePath = (e.NewValue as string[])[0];
+        }
 
         #region 页面跳转
         [ObservableProperty]

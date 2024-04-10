@@ -61,6 +61,5 @@
                 <ContentControl Content="{Binding TopOnePage}" />
             </Skin:AduTabItem>
         </Skin:AduTabControl>
-
     </Grid>
 </Skin:MetroWindow>
