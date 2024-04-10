@@ -14,13 +14,6 @@ using System.Windows.Media;
 namespace CT.WPF.MagicEffects.Demo.ViewModels.ToneMapping {
     partial class ToneMappingEffectViewModel : ObservableObject {
         [ObservableProperty]
-        private string selectedImagePath;
-
-        [RelayCommand]
-        public void SelectImage(RoutedPropertyChangedEventArgs<object> e) {
-            SelectedImagePath = (e.NewValue as string[])[0];
-        }
-        [ObservableProperty]
         private ObservableCollection<ToneMappingEffectOptions> effectOptions;
         [ObservableProperty]
         private ToneMappingEffectOptions selectedEffectOption;

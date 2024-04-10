@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/CT.WPF.MagicEffects.Demo;component/Converters/Converters.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/CT.WPF.MagicEffects.Demo;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/CT.WPF.MagicEffects.Demo;component/Themes/CommonEffectControl.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -22,14 +22,6 @@ namespace CT.WPF.MagicEffects.Demo.UserControls {
     public partial class MonochromeEffectControl : UserControl {
         public MonochromeEffectControl() {
             InitializeComponent();
-            monochromeViewModel = this.DataContext as MonochromeEffectViewModel;
-
-        }
-        private MonochromeEffectViewModel monochromeViewModel;
-        private void ColorPicker_ColorChange(object sender,EventArgs e) {
-            if (ColorPicker.Background is SolidColorBrush solid) {
-                monochromeViewModel.ChangeFilterColorCommand.Execute(solid.Color);
-            }
         }
     }
 }

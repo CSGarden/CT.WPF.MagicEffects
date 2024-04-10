@@ -1,0 +1,63 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Skin="https://github.com/aduskin"
+    xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:common="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls.Common"
+    xmlns:vm="clr-namespace:CT.WPF.MagicEffects.Demo.ViewModels">
+    <Style TargetType="common:CommonEffectControl">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="common:CommonEffectControl">
+                        <Grid Background="{DynamicResource DefaultBackground}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!--  展示列表展示多个路径效果xmal  -->
+                            <StackPanel Orientation="Vertical">
+                                <Border
+                                    Height="100"
+                                    MinWidth="100"
+                                    VerticalAlignment="Top"
+                                    Style="{StaticResource ShowControlBorder}">
+                                    <Skin:AduUpload
+                                        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                                        Cursor="Hand"
+                                        Filter="图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+                                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                                        MultiSelect="False">
+                                        <behavior:Interaction.Triggers>
+                                            <behavior:EventTrigger EventName="FileAduUpload">
+                                                <behavior:InvokeCommandAction Command="{Binding Source={x:Static vm:ViewModelLocator.Instance}, Path=Main.SelectImageCommand}" PassEventArgsToCommand="True" />
+                                            </behavior:EventTrigger>
+                                        </behavior:Interaction.Triggers>
+                                    </Skin:AduUpload>
+                                </Border>
+                                <!--  操作区域用ContentControl给外面不同的功能绑定  -->
+                                <ContentControl Content="{TemplateBinding Option}" />
+                            </StackPanel>
+
+                            <Skin:MetroScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
+                                <Grid>
+                                    <ScrollViewer
+                                        Grid.Row="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalScrollBarVisibility="Auto"
+                                        VerticalScrollBarVisibility="Auto">
+                                        <Viewbox Height="700" Stretch="Uniform">
+                                            <!--  图片的Effect给外面不同的效果绑定  -->
+                                            <Image Effect="{TemplateBinding ImageEffect}" Source="{Binding Source={x:Static vm:ViewModelLocator.Instance}, Path=Main.SelectedImagePath}" />
+                                        </Viewbox>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Skin:MetroScrollViewer>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

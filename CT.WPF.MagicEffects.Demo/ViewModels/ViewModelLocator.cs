@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CT.WPF.MagicEffects.Demo.ViewModels {
-    internal class ViewModelLocator {
+    public class ViewModelLocator {
+        public static ViewModelLocator Instance { get; private set; }
         private IServiceProvider serviceProvider;
         public ViewModelLocator() {
             RegisterViewModel();
+            Instance = this;
         }
         private void RegisterViewModel() {
             if (serviceProvider == null) {
