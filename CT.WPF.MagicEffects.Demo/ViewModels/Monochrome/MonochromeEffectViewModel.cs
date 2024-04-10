@@ -48,8 +48,8 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.Monochrome {
         }
 
         [RelayCommand]
-        public void ChangeFilterColor(Color color) {
-            SelectedEffectOption.FilterColor = color;
+        public void ChangeFilterColor(SolidColorBrush brush) {
+            SelectedEffectOption.FilterColor = brush.Color;
         }
     }
 }

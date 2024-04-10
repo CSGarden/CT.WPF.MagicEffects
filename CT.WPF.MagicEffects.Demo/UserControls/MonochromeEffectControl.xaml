@@ -76,8 +76,8 @@
                         Padding="5"
                         DefaultColor="Transparent">
                         <behavior:Interaction.Triggers>
-                            <behavior:EventTrigger EventName="ColorChanged">
-                                <behavior:InvokeCommandAction Command="{Binding ChangeFilterColorCommand}" CommandParameter="{Binding ElementName=ColorPicker, Path=Background}" />
+                            <behavior:EventTrigger EventName="ColorChange">
+                                <behavior:InvokeCommandAction Command="{Binding DataContext.ChangeFilterColorCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding ElementName=ColorPicker, Path=Background}" />
                             </behavior:EventTrigger>
                         </behavior:Interaction.Triggers>
                     </Skin:MetroColorPicker>

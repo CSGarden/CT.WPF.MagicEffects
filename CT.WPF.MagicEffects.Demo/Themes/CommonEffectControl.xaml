@@ -36,7 +36,7 @@
                                     </Skin:AduUpload>
                                 </Border>
                                 <!--  操作区域用ContentControl给外面不同的功能绑定  -->
-                                <ContentControl Content="{TemplateBinding Option}" />
+                                <ContentPresenter Content="{TemplateBinding Option}" />
                             </StackPanel>
 
                             <Skin:MetroScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
