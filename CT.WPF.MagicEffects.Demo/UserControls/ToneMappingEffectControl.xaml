@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Skin="https://github.com/aduskin"
     xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:common="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:effects="clr-namespace:CT.WPF.MagicEffects;assembly=CT.WPF.MagicEffects"
     xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls"
@@ -16,130 +17,90 @@
     <UserControl.DataContext>
         <vm:ToneMappingEffectViewModel />
     </UserControl.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical">
-            <Grid>
-                <StackPanel Cursor="" Orientation="Vertical">
-                    <Border
-                        Height="100"
-                        MinWidth="100"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource ShowControlBorder}">
-                        <Skin:AduUpload
-                            BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                            Cursor="Hand"
-                            Filter="图片文件|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
-                            Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                            MultiSelect="False">
-                            <behavior:Interaction.Triggers>
-                                <behavior:EventTrigger EventName="FileAduUpload">
-                                    <behavior:InvokeCommandAction Command="{Binding SelectImageCommand}" PassEventArgsToCommand="True" />
-                                </behavior:EventTrigger>
-                            </behavior:Interaction.Triggers>
-                        </Skin:AduUpload>
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Border
-                Background="Linen"
-                BorderBrush="Transparent"
-                BorderThickness="0">
-                <Skin:MetroScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
-                    <ListView
-                        Width="240"
-                        Height="550"
-                        BorderThickness="0"
-                        ItemsSource="{Binding EffectOptions}"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                        SelectedItem="{Binding SelectedEffectOption, Mode=TwoWay}"
-                        SelectionMode="Single">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                                        Text="{Binding Name}"
-                                        TextWrapping="Wrap" />
-                                    <Viewbox
-                                        Width="99"
-                                        Height="88"
-                                        Margin="2">
-                                        <Image Source="{Binding DataContext.SelectedImagePath, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
-                                            <Image.Effect>
-                                                <effects:ToneMappingEffect
-                                                    BlueShift="{Binding BlueShift}"
-                                                    Defog="{Binding Defog}"
-                                                    Exposure="{Binding Exposure}"
-                                                    FogColor="{Binding FogColor}"
-                                                    Gamma="{Binding Gamma}"
-                                                    VignetteAmount="{Binding VignetteAmount}"
-                                                    VignetteCenter="{Binding VignetteCenter}"
-                                                    VignetteRadius="{Binding VignetteRadius}" />
-                                            </Image.Effect>
-                                        </Image>
-                                    </Viewbox>
-                                    <TextBlock
-                                        Margin="0,10,0,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="12"
-                                        Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                                        Text="调节强度"
-                                        TextWrapping="Wrap" />
-                                    <Skin:AduFlatSilder
-                                        Height="18"
-                                        Margin="0,10"
-                                        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                                        Cursor="Hand"
-                                        Maximum="1.0"
-                                        Minimum="0.0"
-                                        Value="{Binding Exposure}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </Skin:MetroScrollViewer>
-            </Border>
-        </StackPanel>
-
-        <Skin:MetroScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
-            <Grid>
-                <ScrollViewer
-                    Grid.Row="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Auto">
-                    <Viewbox Height="700" Stretch="Uniform">
-                        <Image Source="{Binding SelectedImagePath}">
-                            <Image.Effect>
-                                <effects:ToneMappingEffect
-                                    BlueShift="{Binding SelectedEffectOption.BlueShift}"
-                                    Defog="{Binding SelectedEffectOption.Defog}"
-                                    Exposure="{Binding SelectedEffectOption.Exposure}"
-                                    FogColor="{Binding SelectedEffectOption.FogColor}"
-                                    Gamma="{Binding SelectedEffectOption.Gamma}"
-                                    VignetteAmount="{Binding SelectedEffectOption.VignetteAmount}"
-                                    VignetteCenter="{Binding SelectedEffectOption.VignetteCenter}"
-                                    VignetteRadius="{Binding SelectedEffectOption.VignetteRadius}" />
-                            </Image.Effect>
-                        </Image>
-                    </Viewbox>
-                </ScrollViewer>
-            </Grid>
-        </Skin:MetroScrollViewer>
-    </Grid>
+    <common:CommonEffectControl>
+        <common:CommonEffectControl.Option>
+            <StackPanel Orientation="Vertical">
+                <Border
+                    Background="Linen"
+                    BorderBrush="Transparent"
+                    BorderThickness="0">
+                    <Skin:MetroScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ListView
+                            Width="240"
+                            Height="550"
+                            BorderThickness="0"
+                            ItemsSource="{Binding EffectOptions}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                            SelectedItem="{Binding SelectedEffectOption, Mode=TwoWay}"
+                            SelectionMode="Single">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                                            Text="{Binding Name}"
+                                            TextWrapping="Wrap" />
+                                        <Viewbox
+                                            Width="99"
+                                            Height="88"
+                                            Margin="2">
+                                            <Image Source="{Binding Path=Main.SelectedImagePath, Source={StaticResource Locator}}">
+                                                <Image.Effect>
+                                                    <effects:ToneMappingEffect
+                                                        BlueShift="{Binding BlueShift}"
+                                                        Defog="{Binding Defog}"
+                                                        Exposure="{Binding Exposure}"
+                                                        FogColor="{Binding FogColor}"
+                                                        Gamma="{Binding Gamma}"
+                                                        VignetteAmount="{Binding VignetteAmount}"
+                                                        VignetteCenter="{Binding VignetteCenter}"
+                                                        VignetteRadius="{Binding VignetteRadius}" />
+                                                </Image.Effect>
+                                            </Image>
+                                        </Viewbox>
+                                        <TextBlock
+                                            Margin="0,10,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="12"
+                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                                            Text="调节强度"
+                                            TextWrapping="Wrap" />
+                                        <Skin:AduFlatSilder
+                                            Height="18"
+                                            Margin="0,10"
+                                            BorderBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                                            Cursor="Hand"
+                                            Maximum="1.0"
+                                            Minimum="0.0"
+                                            Value="{Binding Exposure}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Skin:MetroScrollViewer>
+                </Border>
+            </StackPanel>
+        </common:CommonEffectControl.Option>
+        <common:CommonEffectControl.ImageEffect>
+            <effects:ToneMappingEffect
+                BlueShift="{Binding SelectedEffectOption.BlueShift}"
+                Defog="{Binding SelectedEffectOption.Defog}"
+                Exposure="{Binding SelectedEffectOption.Exposure}"
+                FogColor="{Binding SelectedEffectOption.FogColor}"
+                Gamma="{Binding SelectedEffectOption.Gamma}"
+                VignetteAmount="{Binding SelectedEffectOption.VignetteAmount}"
+                VignetteCenter="{Binding SelectedEffectOption.VignetteCenter}"
+                VignetteRadius="{Binding SelectedEffectOption.VignetteRadius}" />
+        </common:CommonEffectControl.ImageEffect>
+    </common:CommonEffectControl>
 </UserControl>
