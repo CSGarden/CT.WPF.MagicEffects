@@ -11,6 +11,10 @@ namespace CT.WPF.MagicEffects.Demo.Models.ToneMapping {
     partial class ToneMappingEffectOptions : ObservableObject {
         public string? Name { get; set; }
         [ObservableProperty]
+        private bool? sliderVisibility = false;
+        [ObservableProperty]
+        private bool? isEffectSelected = false;
+        [ObservableProperty]
         private double? gamma;
         [ObservableProperty]
         private double? defog;

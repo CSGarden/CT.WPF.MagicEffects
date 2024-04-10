@@ -14,12 +14,51 @@ using System.Windows.Media;
 namespace CT.WPF.MagicEffects.Demo.ViewModels.ToneMapping {
     partial class ToneMappingEffectViewModel : ObservableObject {
         [ObservableProperty]
+        private ToneMappingEffect toneMappingEffects = new ToneMappingEffect();
+        [ObservableProperty]
         private ObservableCollection<ToneMappingEffectOptions> effectOptions;
         [ObservableProperty]
         private ToneMappingEffectOptions selectedEffectOption;
+        partial void OnSelectedEffectOptionChanging(ToneMappingEffectOptions? oldValue,ToneMappingEffectOptions newValue) {
+            if (newValue != null && newValue.Name != "无") {
+                newValue.IsEffectSelected = true;
+                newValue.SliderVisibility = true;
+
+            }
+            if (oldValue != null) {
+                oldValue.SliderVisibility = false;
+                oldValue.IsEffectSelected = false;
+            }
+        }
+
+        partial void OnSelectedEffectOptionChanged(ToneMappingEffectOptions value) {
+            if (value.Name == "无") {
+                ToneMappingEffects = null;
+                return;
+            } else {
+                if (ToneMappingEffects == null) {
+                    ToneMappingEffects = new ToneMappingEffect();
+                }
+                ToneMappingEffects.Gamma = (double)value.Gamma;
+                ToneMappingEffects.Defog = (double)value.Defog;
+                ToneMappingEffects.BlueShift = (double)value.BlueShift;
+                ToneMappingEffects.FogColor = value.FogColor;
+                ToneMappingEffects.Exposure = (double)value.Exposure;
+                ToneMappingEffects.VignetteAmount = (double)value.VignetteAmount;
+                ToneMappingEffects.VignetteCenter = (Point)value.VignetteCenter;
+                ToneMappingEffects.VignetteRadius = (double)value.VignetteRadius;
+
+
+            }
+        }
+        [RelayCommand]
+        private void ValueChanged(double exposure) {
+            ToneMappingEffects.Exposure = exposure;
+        }
+
         public ToneMappingEffectViewModel() {
             EffectOptions = new ObservableCollection<ToneMappingEffectOptions> {
-                 new ToneMappingEffectOptions() { Name = "无", Gamma = null, Defog = null, BlueShift = null, FogColor = Colors.Transparent, Exposure = null, VignetteAmount = null, VignetteCenter =null, VignetteRadius = null },
+                 new ToneMappingEffectOptions() { Name = "无", Gamma = null, Defog = null, BlueShift = null, FogColor = Colors.Transparent, Exposure = null, VignetteAmount = null, VignetteCenter =null, VignetteRadius = null,SliderVisibility=false },
                  new ToneMappingEffectOptions() { Name = "1", Gamma = 1.8, Defog = 0.09, BlueShift = -0.07, FogColor = Colors.Red, Exposure = 0.14, VignetteAmount = 0.0, VignetteCenter = new System.Windows.Point(0.5,0.5), VignetteRadius = 0.5 },
                  new ToneMappingEffectOptions() { Name = "2", Gamma = 0.5, Defog = 0.18, BlueShift = 0.40, FogColor = Colors.Gray, Exposure = -0.20, VignetteAmount = 0.0, VignetteCenter = new System.Windows.Point(0.5, 0.5), VignetteRadius = 1.0 },
                  new ToneMappingEffectOptions() { Name = "3", Gamma = 2.2, Defog = 0.05, BlueShift = 0.0, FogColor = Colors.Blue, Exposure = 0.07, VignetteAmount = 0.0, VignetteCenter = new System.Windows.Point(0.5, 0.5), VignetteRadius = 1.0 },
@@ -33,6 +72,7 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.ToneMapping {
             if (EffectOptions.Any()) {
                 SelectedEffectOption = EffectOptions[0];
             }
+
         }
     }
 }
