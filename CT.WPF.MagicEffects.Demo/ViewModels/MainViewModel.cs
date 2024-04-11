@@ -11,7 +11,7 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels {
         private string selectedImagePath;
 
         [ObservableProperty]
-        private string title = "效果demo";
+        private string title = "AdvancedEffect";
 
         [ObservableProperty]
         private int selectedModularIndex;

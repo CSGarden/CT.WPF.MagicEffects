@@ -14,6 +14,7 @@
     BorderBrush="{DynamicResource DefaultThemeColor}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     FontSize="16"
+    Icon="Images/Resources/gua.png"
     IsSubWindowShow="False"
     SysButtonColor="White"
     TitleForeground="LightYellow"
