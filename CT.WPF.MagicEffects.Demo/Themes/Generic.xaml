@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="DefaultThemeColor" Color="#FF2D9F87" />
-    <SolidColorBrush x:Key="DefaultBorderBrush" Color="Beige" />
+    <SolidColorBrush x:Key="DefaultThemeColor" Color="#FF8FD5B1" />
+    <SolidColorBrush x:Key="DefaultBorderBrush" Color="#4B8FD5B1" />
     <SolidColorBrush x:Key="DefaultBrush" Color="BlueViolet" />
     <SolidColorBrush x:Key="DefaultListBrush1" Color="#009999" />
     <SolidColorBrush x:Key="DefaultListBrush2" Color="#9066CCCC" />
@@ -37,7 +37,7 @@
 
     <!--  马赛克背景  -->
     <SolidColorBrush x:Key="MainContentForegroundBrush" Color="{DynamicResource MainContentForegroundColor}" />
-    <Color x:Key="MainContentForegroundColor">#10EE796F</Color>
+    <Color x:Key="MainContentForegroundColor">#4B8FD5B1</Color>
     <DrawingBrush
         x:Key="MainContentForegroundDrawingBrush"
         RenderOptions.CachingHint="Cache"

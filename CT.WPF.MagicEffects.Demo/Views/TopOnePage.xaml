@@ -25,12 +25,14 @@
             BorderThickness="0,0,1,0">
             <StackPanel Orientation="Vertical">
                 <Skin:HCRunningBlock
-                    Margin="3"
-                    Content="各 种 效 果 应 有 尽 有"
-                    FontSize="16"
-                    FontWeight="Medium"
+                    Margin="8,0,4,5"
+                    FlowDirection="RightToLeft"
+                    FontSize="14"
+                    FontWeight="ExtraBlack"
                     Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
-                    Duration="0:0:8" />
+                    Duration="0:0:18">
+                    <TextBlock Text="若夫日出而林霏开，云归而岩穴暝，晦明变化者，山间之朝暮也" />
+                </Skin:HCRunningBlock>
                 <ListView
                     Background="Transparent"
                     BorderThickness="0"
@@ -76,11 +78,11 @@
                         <DataTemplate>
                             <Border
                                 x:Name="Bd"
-                                Width="220"
+                                Width="230"
                                 MinHeight="43"
                                 Margin="0,0,0,5"
                                 Background="Transparent"
-                                BorderBrush="LightGray"
+                                BorderBrush="{StaticResource DefaultBorderBrush}"
                                 BorderThickness="1"
                                 CornerRadius="10">
                                 <Grid>
@@ -117,7 +119,7 @@
                             </Border>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
-                                    <Setter TargetName="Bd" Property="Background" Value="#50CCCCFF" />
+                                    <Setter TargetName="Bd" Property="Background" Value="{StaticResource DefaultBorderBrush}" />
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=State}" Value="New">
@@ -137,7 +139,7 @@
                                     <MultiTrigger.Conditions>
                                         <Condition Property="IsMouseOver" Value="True" />
                                     </MultiTrigger.Conditions>
-                                    <Setter TargetName="Bd" Property="Background" Value="{DynamicResource DefaultListBrush3}" />
+                                    <Setter TargetName="Bd" Property="Background" Value="{StaticResource DefaultBorderBrush}" />
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="False">
