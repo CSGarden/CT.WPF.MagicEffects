@@ -8,15 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Shaders\DirectionalBlurEffect.ps" />
+    <None Remove="Shaders\GrayScaleEffect.ps" />
     <None Remove="Shaders\MonochromeEffect.ps" />
+    <None Remove="Shaders\OldMovieEffect.ps" />
+    <None Remove="Shaders\SharpenEffect.ps" />
     <None Remove="Shaders\TexturedColorReplaceEffect.ps" />
     <None Remove="Shaders\ToneMappingEffect.ps" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Shaders\DirectionalBlurEffect.ps" />
+    <Resource Include="Shaders\GrayScaleEffect.ps" />
     <Resource Include="Shaders\MonochromeEffect.ps">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Shaders\OldMovieEffect.ps" />
+    <Resource Include="Shaders\SharpenEffect.ps" />
     <Resource Include="Shaders\TexturedColorReplaceEffect.ps" />
     <Resource Include="Shaders\ToneMappingEffect.ps" />
   </ItemGroup>

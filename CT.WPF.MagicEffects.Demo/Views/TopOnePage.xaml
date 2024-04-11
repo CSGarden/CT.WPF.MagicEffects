@@ -31,25 +31,51 @@
                     FontWeight="Medium"
                     Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
                     Duration="0:0:8" />
-                <ListBox
+                <ListView
+                    Background="Transparent"
                     BorderThickness="0"
                     ItemsSource="{Binding SearchControl.View}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
                     SelectedItem="{Binding CurrentShowControl}">
-                    <ListBox.Resources>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="BorderThickness" Value="0" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="Cursor" Value="Hand" />
+                    <ListView.Resources>
+                        <Style x:Key="FocusVisual">
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Rectangle
+                                            Margin="2"
+                                            SnapsToDevicePixels="False"
+                                            Stroke="Transparent"
+                                            StrokeDashArray="1 2"
+                                            StrokeThickness="1" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
-                    </ListBox.Resources>
-                    <ListBox.ItemTemplate>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Width" Value="235" />
+                            <Setter Property="Padding" Value="2" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border
                                 x:Name="Bd"
-                                Width="230"
+                                Width="220"
                                 MinHeight="43"
                                 Margin="0,0,0,5"
                                 Background="Transparent"
@@ -91,6 +117,7 @@
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
                                     <Setter TargetName="Bd" Property="Background" Value="#50CCCCFF" />
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=State}" Value="New">
                                     <Setter TargetName="state" Property="Width" Value="80" />
@@ -110,15 +137,17 @@
                                         <Condition Property="IsMouseOver" Value="True" />
                                     </MultiTrigger.Conditions>
                                     <Setter TargetName="Bd" Property="Background" Value="{DynamicResource DefaultListBrush3}" />
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="False">
                                     <Setter TargetName="Bd" Property="TextElement.Foreground" Value="Transparent" />
                                     <Setter TargetName="Bd" Property="Background" Value="Transparent" />
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 </Trigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
         </Border>
         <Grid Grid.Column="1" Background="{StaticResource MainContentForegroundDrawingBrush}">
