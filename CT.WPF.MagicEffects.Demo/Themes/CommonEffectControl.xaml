@@ -4,6 +4,7 @@
     xmlns:Skin="https://github.com/aduskin"
     xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:common="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls.Common"
+    xmlns:mediaKit="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKitCore"
     xmlns:vm="clr-namespace:CT.WPF.MagicEffects.Demo.ViewModels">
     <Style TargetType="common:CommonEffectControl">
         <Style.Setters>
@@ -41,17 +42,26 @@
 
                             <Skin:MetroScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
                                 <Grid>
-                                    <ScrollViewer
-                                        Grid.Row="1"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Bottom"
-                                        HorizontalScrollBarVisibility="Auto"
-                                        VerticalScrollBarVisibility="Auto">
-                                        <Viewbox Height="700" Stretch="Uniform">
-                                            <!--  图片的Effect给外面不同的效果绑定  -->
-                                            <Image Effect="{TemplateBinding ImageEffect}" Source="{Binding Source={x:Static vm:ViewModelLocator.Instance}, Path=Main.SelectedImagePath}" />
-                                        </Viewbox>
-                                    </ScrollViewer>
+                                    <Skin:AduTabControl>
+                                        <Skin:AduTabItem Header="图片">
+                                            <ScrollViewer
+                                                Grid.Row="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Bottom"
+                                                HorizontalScrollBarVisibility="Auto"
+                                                VerticalScrollBarVisibility="Auto">
+                                                <Viewbox Height="700" Stretch="Uniform">
+                                                    <!--  图片的Effect给外面不同的效果绑定  -->
+                                                    <Image Effect="{TemplateBinding ImageEffect}" Source="{Binding Source={x:Static vm:ViewModelLocator.Instance}, Path=Main.SelectedImagePath}" />
+                                                </Viewbox>
+                                            </ScrollViewer>
+                                        </Skin:AduTabItem>
+                                        <Skin:AduTabItem Header="视频">
+                                            <Grid Effect="{TemplateBinding ImageEffect}">
+                                                <Image x:Name="PartVideoImage" Grid.Row="1" />
+                                            </Grid>
+                                        </Skin:AduTabItem>
+                                    </Skin:AduTabControl>
                                 </Grid>
                             </Skin:MetroScrollViewer>
                         </Grid>
