@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="CT.WPF.MagicEffects.Demo.UserControls.OrdinaryEffectControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Skin="https://github.com/aduskin"
+    xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:common="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:effects="clr-namespace:CT.WPF.MagicEffects;assembly=CT.WPF.MagicEffects"
+    xmlns:local="clr-namespace:CT.WPF.MagicEffects.Demo.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:CT.WPF.MagicEffects.Demo.ViewModels.Ordinary"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:OrdinaryEffectViewModel />
+    </UserControl.DataContext>
+    <common:CommonEffectControl ImageEffect="{Binding SelectedOrdinary.ObjectShaderEffect}">
+        <common:CommonEffectControl.Option>
+            <StackPanel Orientation="Vertical">
+                <Border BorderBrush="Transparent" BorderThickness="0">
+                    <Skin:MetroScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ListView
+                            Width="240"
+                            Height="550"
+                            BorderThickness="0"
+                            ItemsSource="{Binding Ordinarys}"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                            SelectedItem="{Binding SelectedOrdinary, Mode=TwoWay}"
+                            SelectionMode="Single">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        MinHeight="110"
+                                        VerticalAlignment="Center"
+                                        Orientation="Vertical">
+                                        <Viewbox
+                                            Width="99"
+                                            Height="78"
+                                            Margin="2">
+                                            <Image Effect="{Binding ObjectShaderEffect}" Source="{Binding Path=Main.SelectedImagePath, Source={StaticResource Locator}}" />
+                                        </Viewbox>
+                                        <TextBlock
+                                            HorizontalAlignment="Center"
+                                            FontSize="14"
+                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Skin:MetroWindow}}, Path=BorderBrush, Mode=TwoWay}"
+                                            Text="{Binding Title}"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+
+                    </Skin:MetroScrollViewer>
+                </Border>
+            </StackPanel>
+        </common:CommonEffectControl.Option>
+    </common:CommonEffectControl>
+</UserControl>

@@ -12,7 +12,7 @@ namespace CT.WPF.MagicEffects {
         public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input",typeof(GrayScaleEffect),0);
         public GrayScaleEffect() {
             PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("pack://application:,,,/CT.WPF.MagicEffects;component/Shaders/GrayScaleEffect.ps",UriKind.Relative);
+            pixelShader.UriSource = new Uri("pack://application:,,,/CT.WPF.MagicEffects;component/Shaders/GrayScaleEffect.ps",UriKind.Absolute);
             this.PixelShader = pixelShader;
 
             this.UpdateShaderValue(InputProperty);

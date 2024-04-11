@@ -19,6 +19,7 @@ namespace CT.WPF.MagicEffects.Demo.ViewModels.TabControlTop {
                 new ControlModel("人像颜色替换", typeof(MonochromeEffectControl)),
                 new ControlModel("纹理颜色替换", typeof(TexturedColorReplaceEffectControl)),
                 new ControlModel("滤镜选择", typeof(ToneMappingEffectControl)),
+                new ControlModel("常用效果",typeof(OrdinaryEffectControl)),
             };
             SearchControl = new CollectionViewSource {
                 Source = AllControl

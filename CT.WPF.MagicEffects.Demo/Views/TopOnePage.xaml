@@ -34,6 +34,7 @@
                 <ListView
                     Background="Transparent"
                     BorderThickness="0"
+                    Focusable="False"
                     ItemsSource="{Binding SearchControl.View}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"

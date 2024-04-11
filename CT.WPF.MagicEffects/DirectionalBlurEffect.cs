@@ -14,7 +14,7 @@ namespace CT.WPF.MagicEffects {
         public static readonly DependencyProperty BlurAmountProperty = DependencyProperty.Register("BlurAmount",typeof(double),typeof(DirectionalBlurEffect),new UIPropertyMetadata(((double)(0.003D)),PixelShaderConstantCallback(1)));
         public DirectionalBlurEffect() {
             PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("pack://application:,,,/CT.WPF.MagicEffects;component/Shaders/DirectionalBlurEffect.ps",UriKind.Relative);
+            pixelShader.UriSource = new Uri("pack://application:,,,/CT.WPF.MagicEffects;component/Shaders/DirectionalBlurEffect.ps",UriKind.Absolute);
             this.PixelShader = pixelShader;
 
             this.UpdateShaderValue(InputProperty);
