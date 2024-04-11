@@ -9,7 +9,7 @@ namespace CT.WPF.MagicEffects.Demo {
     public partial class App : Application {
 
         protected override void OnStartup(StartupEventArgs e) {
-            var splashScreen = new SplashScreen("Images/Resources/Start.png");
+            var splashScreen = new SplashScreen("Images/Resources/star1.png");
             splashScreen.Show(false);
             splashScreen.Close(TimeSpan.FromMilliseconds(100));
             base.OnStartup(e);
