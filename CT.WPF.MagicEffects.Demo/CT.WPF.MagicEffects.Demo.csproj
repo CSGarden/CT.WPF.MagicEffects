@@ -13,11 +13,16 @@
     <None Remove="Images\Resources\demo.png" />
     <None Remove="Images\Resources\gua.png" />
     <None Remove="Images\Resources\logo.jpg" />
+    <None Remove="Images\Resources\star1.png" />
     <None Remove="Images\Resources\Start.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Resources\star1.png" />
   </ItemGroup>
 
   <ItemGroup>
