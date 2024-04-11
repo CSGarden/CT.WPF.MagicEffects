@@ -14,6 +14,24 @@
     <UserControl.DataContext>
         <vm:TopOneViewModel />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style x:Key="ListItemNullFocusContainerStyle" TargetType="ListViewItem">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border
+                            Name="Border"
+                            Background="Transparent"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240" />
@@ -35,6 +53,7 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Focusable="False"
+                    ItemContainerStyle="{StaticResource ListItemNullFocusContainerStyle}"
                     ItemsSource="{Binding SearchControl.View}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"

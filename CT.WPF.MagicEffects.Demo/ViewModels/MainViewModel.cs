@@ -8,7 +8,7 @@ using System.Windows.Media;
 namespace CT.WPF.MagicEffects.Demo.ViewModels {
     public partial class MainViewModel : ObservableObject {
         [ObservableProperty]
-        private string selectedImagePath;
+        private string selectedImagePath = "/Images/Resources/demo.png";
 
         [ObservableProperty]
         private string title = "效果demo";
