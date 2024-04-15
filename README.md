@@ -12,7 +12,7 @@
   <h3 align="center">Demo实现特效示例</h3>
 <p align="center">
   <a href="https://github.com/CSGarden/CT.WPF.MagicEffects">
-    <img  src="Images/Resources/ex.png" alt="Logo" width="220" height="120">
+     <img  src="ex.png" alt="Logo">
   </a>
 </p>
 

@@ -12,7 +12,7 @@
   <h3 align="center">Demo实现特效示例</h3>
 <p align="center">
   <a href="https://github.com/CSGarden/CT.WPF.MagicEffects">
-    <img  src="ex.png" alt="Logo" width="1200" height="600">
+    <img  src="Images/Resources/ex.png" alt="Logo">
   </a>
 </p>
 
@@ -41,7 +41,7 @@ git clone https://github.com/CSGarden/CT.WPF.MagicEffects.git
 
 ### 贡献者
    [🆔CT](https://github.com/CSGarden)
-   [🆔大头](https://github.com/BigHeadDev)
+   [🆔大头](#https://github.com/BigHeadDev)
 
 ### 版本控制
 
